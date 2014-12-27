@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--链接数据库驱动jar包路径-->
+    <classPathEntry location="E://IDEAWorkspace//kkx//web//WEB-INF//lib//sqljdbc4.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Criteria"/>
+        </plugin>
+        <plugin type="com.shinowit.mybatis.plugin.SelectByPage4MySqlPlugin"/>
+
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://127.0.0.1:1433;databaseName=oss;"
+                        userId="sa" password="shinow">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.shinowit.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+
+        <!--需要与spring整合时必须保证xml文件与mapper接口在同一个package下面-->
+        <sqlMapGenerator targetPackage="com.shinowit.dao.mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.shinowit.dao.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+<!--数据库表结构-->
+        <table tableName="delivery_info">
+
+        </table>
+
+        <table tableName="in_stock">
+            <generatedKey column="in_stock_id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="in_stock_detail">
+            <generatedKey column="in_stock_detail_id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="member_address">
+            <generatedKey column="id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="member_supply_record">
+            <generatedKey column="id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="order_detail">
+            <generatedKey column="id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="order_info">
+
+        </table>
+
+        <table tableName="out_stock">
+            <generatedKey column="out_stock_id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="out_stock_detail">
+            <generatedKey column="out_stock_detail_id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="product">
+
+        </table>
+
+        <table tableName="product_sale_status">
+            <generatedKey column="status_id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="product_stock">
+
+        </table>
+
+        <table tableName="product_type">
+
+        </table>
+
+        <table tableName="product_unit">
+            <generatedKey column="unit_id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="provider">
+
+        </table>
+
+        <table tableName="sys_log">
+            <generatedKey column="log_id" sqlStatement="SqlServer"
+                          identity="true"/>
+        </table>
+
+        <table tableName="web_user">
+
+        </table>
+
+
+
+        <!--
+        <table schema="" tableName="ALLTYPES" domainObjectName="Customer" >
+        <property name="useActualColumnNames" value="true"/> <generatedKey
+        column="ID" sqlStatement="DB2" identity="true" /> <columnOverride
+        column="DATE_FIELD" property="startDate" /> <ignoreColumn
+        column="FRED" /> <columnOverride column="LONG_VARCHAR_FIELD"
+        jdbcType="VARCHAR" /> </table>
+        -->
+    </context>
+</generatorConfiguration>
+
+
