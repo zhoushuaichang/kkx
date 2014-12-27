@@ -21,5 +21,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if(uri.endsWith("/base")){
             return true;
         }
+        return false;
     }
 }
