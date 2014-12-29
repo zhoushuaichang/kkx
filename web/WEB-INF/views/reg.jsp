@@ -11,7 +11,8 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/check_valid.js"></script>
     <script type="text/javascript">
         function reloadValidate() {
-            document.getElementById('Img1').src = '/html/validCode.jsp?r=' + Math.random()
+//            document.getElementById('Img1').src = '/validCode';
+            document.getElementById('Img1').src = '/html/validCode.jsp?r=' + Math.random();
         }
     </script>
 </head>
@@ -24,13 +25,13 @@
         <div id="Login">
             <h1 align="left"><img src="<%=request.getContextPath()%>/images/pic_title.gif"></h1>
             <table width="800" border="0" align="center" cellpadding="0" cellspacing="0" class="lineJL">
-                <form:form action="/checkReg" method="post" modelAttribute="webUser">
+                <form:form action="/reg/insert" method="post" modelAttribute="webUser" id="regForm">
                     <tbody>
                     <tr>
                         <td class="sty03" valign="top" width="236" align="right">请填写您的Email地址：</td>
                         <td class="sty01" valign="top" width="219">
                             <form:input path="email" id="Email" onblur="Check_Email()"/>
-                            <span class="Reginput" id="span_CheckUsername"></span>
+                            <span class="Reginput" id="CheckUsername"></span>
                         </td>
                         <td class="sty04" valign="top" width="425" align="left" id="emailTip">　请填写有效的 Email地址<br>我们会给这个地址发送帐户信息、订单通知等。
                         </td>
@@ -38,21 +39,21 @@
                     <tr>
                         <td class="sty03" valign="top" align="right">请设定密码：</td>
                         <td class="sty01" valign="top">
-                            <form:password path="userPass"maxlength="16" id="PassWord" onblur="ChangePassword();"/>
+                            <form:password path="userPass" maxlength="16" id="PassWord" onblur="ChangePassword();"/>
                             <span id="CheckRePassWord" class="Reginput"></span></td>
-                        <td class="sty03 sty04" valign="top" align="left" id="passwordTip">　密码请设为6-16位字母或数字</td>
+                        <td class="sty03 sty04" valign="top" align="left" >　密码请设为6-16位字母或数字</td>
                     </tr>
                     <tr>
                         <td class="sty03" valign="top" align="right">请再次输入设定密码：</td>
                         <td class="sty01" valign="top">
                             <input id="RexPassWord" name="RexPassWord" maxlength="16" onblur="Check_RePassWord()" value="" type="password">
                             <span id="ReCheckRePassWord" class="Reginput"></span></td>
-                        <td align="left" id="rexPasswordTip">　</td>
+                        <td align="left" >　</td>
                     </tr>
                     <tr>
                         <td class="sty03" valign="top" align="right">昵称：</td>
                         <td class="sty01" valign="top">
-                            <form:input path="userName"maxlength="16" id="UserName" onblur="CheckUserName()"/>
+                            <form:input path="userName" maxlength="16" id="UserName" onblur="CheckUserName()"/>
                             <span id="CheckNewUserName" class="Reginput"></span></td>
                         <td class="sty03 sty04" valign="top" align="left" id="userNameTip">　请输入中英文、数字、下划线或它们的组合作为登录名
                         </td>
@@ -65,7 +66,8 @@
                                    style="width:100px;" type="text">
                             <img id="Img1"
                                  style="height:20px;width: 60px;vertical-align: top; padding: 0pt 0pt 0pt 8px;"
-                                 src="<%=request.getContextPath()%>/WEB-INF/views/validCode.jspdCode.jsp"
+                                 src="<%=request.getContextPath()%>/html/validCode.jsp"
+                                 <%--onclick=this.src="/validCode">--%>
                                  onclick=this.src="/html/validCode.jsp?r="+Math.random()>
                             <span class="sty03 sty04" id="validCodeTip"><a href="javascript:reloadValidate()">看不清，换一张</a></span>
                             <span class="Reginput" id="CheckValidateCode" style="width: 220px;"></span>
@@ -74,7 +76,7 @@
                     <tr>
                         <td>　</td>
                         <td align="right"><input src="<%=request.getContextPath()%>/images/submit.gif"
-                                                 style="width:91px; height:25px; border:0;" alt="完成注册" type="image">
+                                                 style="width:91px; height:25px; border:0;" alt="完成注册" type="image" onclick="submitRegForm()">
                         </td>
                         <td>　</td>
                     </tr>
