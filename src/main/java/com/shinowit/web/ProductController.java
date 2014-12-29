@@ -41,10 +41,9 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/productByCode/{productCode}")
-    public String showProductByCode(@PathVariable String productCode,HttpServletRequest request){
+    public String showProductByCode(@PathVariable String productCode,Model model){
         Product product=product_dao.selectByPrimaryKey(productCode);
-        HttpSession session=request.getSession(true);
-        session.setAttribute("product",product);
+        model.addAttribute("product",product);
         return "inner-page";
     }
 
