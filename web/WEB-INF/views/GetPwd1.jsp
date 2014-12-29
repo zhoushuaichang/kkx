@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="base.jsp"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,21 +21,24 @@
                 <div class="dlTitle">
                 </div>
                 <div class="dlContent">
+                    <form:form action="" method="post" id="emailForm">
                     <div class="dlContentC">
                         <p class="colSty1"> 请输入您在注册时使用的Email地址：</p>
                         <p class="hideMsg2" id="emailErrMsg"></p>
                         <p class="pSty1B pSty2B"> 请填写您的Email地址：
-                            <input name="txtM2Email" id="txtM2Email" maxlength="128" type="text" />
+                            <input name="email_address" id="email_address" maxlength="128" type="text" />
                             <input name="hiddenUserIDAndEmail" id="hiddenUserIDAndEmail" type="hidden" />
+                            <span id="emailErrMsg" ></span>
                         </p>
                         <!-- onchange="EmailGetPwd(false);"-->
-                        <p class="pSty1B" align="right"><a href="<%=request.getContextPath()%>/WEB-INF/views/GetPwd2.jsptPwd2.jsp"><img src="<%=request.getContextPath()%>/images/button_next.gif" border="0" /></a></p>
+                        <p class="pSty1B" align="right"><a onclick="submitEmail()"><img src="${ctx}/images/button_next.gif" border="0" /></a></p>
                         <p class="pSty4">如果该电子邮箱地址不正确，或者您已经忘记注册时填写的邮箱地址，那我们无法帮您找回密码，建议创建一个新帐户。</p>
                         <p class="pSty7 color3" style="margin-top:20px;">如果有任何疑问，请访问口口香<a href="#" target="_blank">帮助中心</a>，或与口口香客服部取得联系。</p>
                         <p class="pSty7">客服邮箱：service@koukouxiang.com</p>
                         <p class="pSty7">客服热线：400-650-7099 (仅收市话费，客服工作时间：8：00-次日凌晨1：00)</p>
                         <p class="pSty7">客服传真：0315-83607020</p>
                     </div>
+                    </form:form>
                 </div>
             </div>
         </div>

@@ -29,12 +29,11 @@ public class BaseController {
     private ProductMapper product_dao;
 
     @RequestMapping(value = "/base")
-    public String showProductTypeList(HttpServletRequest request) {
-        HttpSession session=request.getSession(true);
+    public String showProductTypeList(Model model) {
         List<ProductType> productTypeList = product_type_dao.listAll();
         List<Product> productList=product_dao.listAll();
-        session.setAttribute("product_type_list", productTypeList);
-        session.setAttribute("product_list", productList);
+        model.addAttribute("product_type_list", productTypeList);
+        model.addAttribute("product_list", productList);
         return "index";
     }
 

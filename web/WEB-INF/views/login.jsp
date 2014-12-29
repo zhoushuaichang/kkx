@@ -18,7 +18,6 @@
     <style>
         .errClass {
             color: #ff0000 ;border : 1px #ff0000
-
         }
 
     </style>
@@ -43,7 +42,7 @@
                     </div>
                     <div class="regSetTabCon">
                         <div style="display: block;" id="con_one_1"><span class="blank20"></span>
-                            <form:form action="${ctx}/checkLogin" method="post" modelAttribute="webUser" id="loginForm">
+                            <form:form action="${ctx}/login/checkLogin" method="post" modelAttribute="webUser" id="loginForm">
                                 <div class="FTextArea"><span>用户名：</span>
                                     <form:input path="userName" id="userName" cssErrorClass="errClass"/><form:errors path="userName" cssErrorClass="errClass"></form:errors>
                                 </div>

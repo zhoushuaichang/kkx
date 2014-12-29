@@ -9,8 +9,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>口口香-首页</title>
-    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+    <link href="${ctx}/css/style.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="${ctx}/js/jquery.js"></script>
     <script type="text/javascript">
         /**
          * 局部刷新页面
@@ -19,20 +19,20 @@
             $('.sb').click(function(){
                 $.ajax({
                     type: "get",
-                    url: "<%=request.getContextPath()%>/product/productByType",
+                    url: "${ctx}/product/productByType",
                     data: "typeCode=" + $(this).attr('data'),
                     contentType:"application/json",
                     success: function (data) {
                         var refreshHtml='';
                         for(var i=0;i<data.length;i++){
                             refreshHtml+='<dl>'+
-                                    '<dt><a href="<%=request.getContextPath()%>/product/productByCode/'+data[i].productCode+'" target="_new">'+
-                                    '<img src="<%=request.getContextPath()%>/'+data[i].picPath+'" width="310" height="310" border="0"/></a>'+
+                                    '<dt><a href="${ctx}/product/productByCode/'+data[i].productCode+'" target="_new">'+
+                                    '<img src="${ctx}/'+data[i].picPath+'" width="310" height="310" border="0"/></a>'+
                                     '</dt>'+
                                     '<dd>'+data[i].productName+'</dd>'+
                                     '<dd><span class="viv1">￥:'+data[i].price+'</span><span class="viv2">'+
-                                    '<a href="<%=request.getContextPath()%>product/productByCode/'+data[i].productCode+'" target="_new">' +
-                                    '<img src="<%=request.getContextPath()%>/images/vivioow_b2.jpg" width="80" height="24" border="0"/></a></span></dd>'+
+                                    '<a href="${ctx}/product/productByCode/'+data[i].productCode+'" target="_new">' +
+                                    '<img src="${ctx}/images/vivioow_b2.jpg" width="80" height="24" border="0"/></a></span></dd>'+
                                     '</dl>';
                         }
                         document.getElementById('productContent').innerHTML=refreshHtml;
@@ -49,16 +49,16 @@
 <div id="box">
 
     <!--guide02 start-->
-    <div class="guide02"><a href="#"><img src="<%=request.getContextPath()%>/images/guide_02.jpg" width="492"
+    <div class="guide02"><a href="#"><img src="${ctx}/images/guide_02.jpg" width="492"
                                           height="107" border="0"/></a><a href="#"><img
-            src="<%=request.getContextPath()%>/images/guide_03.jpg" width="481" height="107" border="0"/></a></div>
+            src="${ctx}/images/guide_03.jpg" width="481" height="107" border="0"/></a></div>
     <!--guide02 end -->
     <!--recommend start-->
     <div class="recommend">
         <h2>推荐美国山核桃长寿果 大杏仁 15.8/半斤 奶香味</h2>
 
-        <p><img src="<%=request.getContextPath()%>/images/coma.gif" width="15" height="12" style="margin-right:12px;"/>山核桃,又名胡桃、马核桃、核桃楸果,是乔木核桃楸的种子。山核桃营养丰富,价值很高,是一种优质木本高级油料作物。此外,还含锌、锰、铬等微量元素与尼克酸等。<img
-                src="<%=request.getContextPath()%>/images/coma_inverse.gif" width="15" height="12"
+        <p><img src="${ctx}/images/coma.gif" width="15" height="12" style="margin-right:12px;"/>山核桃,又名胡桃、马核桃、核桃楸果,是乔木核桃楸的种子。山核桃营养丰富,价值很高,是一种优质木本高级油料作物。此外,还含锌、锰、铬等微量元素与尼克酸等。<img
+                src="${ctx}/images/coma_inverse.gif" width="15" height="12"
                 style="margin-left:12px;"/></p>
     </div>
     <!--recommend end-->
@@ -70,10 +70,8 @@
             <div id="left">
                 <h2>商品分类</h2>
                 <ul>
-                    <%
-                        List<ProductType> productTypeList = (List<ProductType>) request.getSession().getAttribute("product_type_list");
-                    %>
-                    <c:forEach items="<%=productTypeList%>" var="current_type">
+
+                    <c:forEach items="${product_type_list}" var="current_type">
                         <li><a class="sb" data="${current_type.typeCode}">${current_type.typeName}</a></li>
                     </c:forEach>
 
@@ -109,25 +107,23 @@
         <div id="mid">
             <h2>新品上市</h2>
             <!--hotsale_ad start -->
-            <div class="hotsale_ad"><img src="<%=request.getContextPath()%>/images/pic1.jpg" width="780" height="274"/>
+            <div class="hotsale_ad"><img src="${ctx}/images/pic1.jpg" width="780" height="274"/>
             </div>
             <!--hotsale_ad end -->
             <!--hotsale start -->
             <%--<iframe src="<%=request.getContextPath()%>/product/productAll" name="part_product_show" style="width:728px;height:auto;" scrolling="no"></iframe>--%>
             <div class="hotsale" id="productContent">
-                <%
-                    List<Product> productList = (List<Product>) request.getSession().getAttribute("product_list");
-                %>
-                <c:forEach items="<%=productList %>" var="product">
+
+                <c:forEach items="${product_list}" var="product">
                     <dl>
-                        <dt><a href="<%=request.getContextPath()%>/product/productByCode/${product.productCode}" target="_new"><img
-                                src="<%=request.getContextPath()%>/${product.picPath}" width="310" height="310"
+                        <dt><a href="${ctx}/product/productByCode/${product.productCode}" target="_new"><img
+                                src="${ctx}/${product.picPath}" width="310" height="310"
                                 border="0"/></a>
                         </dt>
                         <dd>${product.productName}</dd>
                         <dd><span class="viv1">￥:${product.price}</span><span class="viv2"><a
-                                href="<%=request.getContextPath()%>/product/productByCode/${product.productCode}" target="_new"><img
-                                src="<%=request.getContextPath()%>/images/vivioow_b2.jpg" width="80" height="24"
+                                href="${ctx}/product/productByCode/${product.productCode}" target="_new"><img
+                                src="${ctx}/images/vivioow_b2.jpg" width="80" height="24"
                                 border="0"/></a></span></dd>
                     </dl>
                 </c:forEach>
