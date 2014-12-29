@@ -111,39 +111,33 @@
                     <tbody>
                     <tr>
                         <td valign="top" align="middle" width="323" colspan="2"
-                            height="30"><font
-                                color="#bb1213"><strong><%=product.getProductName()%></strong></font></td>
+                            height="30"><font color="#bb1213"><strong>${product.getProductName()}</strong></font></td>
                     </tr>
                     <tr>
-                        <td valign="top" align="right" width="111"
-                            height="28">价&nbsp;&nbsp;&nbsp;格：</td>
-                        <td valign="top" width="212" height="28"><span style=" font-size:14px;color:#c00; font-weight:bold;">￥<%=product.getPrice()%></span></td>
+                        <td valign="top" align="right" width="111" height="28">价&nbsp;&nbsp;&nbsp;格：</td>
+                        <td valign="top" width="212" height="28"><span style=" font-size:14px;color:#c00; font-weight:bold;">￥${product.getPrice()}</span></td>
                     </tr>
                     <tr>
-                        <td valign="top" align="right" width="111"
-                            height="28">规&nbsp;&nbsp;&nbsp; 格：</td>
-                        <td valign="top" width="212" height="28"><%=product.getSpec()%></td>
+                        <td valign="top" align="right" width="111" height="28">规&nbsp;&nbsp;&nbsp; 格：</td>
+                        <td valign="top" width="212" height="28">${product.getSpec()}</td>
                     </tr>
                     <tr>
                         <td valign="top" align="right" width="111" height="28">批 发 价：</td>
-                        <td valign="top" width="212"
-                            height="28">电话咨询</td>
+                        <td valign="top" width="212" height="28">电话咨询</td>
                     </tr>
 
                     <tr>
-                        <td valign="top" align="right" width="111"
-                            height="21">内&nbsp;&nbsp;&nbsp; 配：</td>
+                        <td valign="top" align="right" width="111" height="21">内&nbsp;&nbsp;&nbsp; 配：</td>
                         <td valign="top" width="212" height="125" rowspan="2"><table height="32" cellspacing="0" cellpadding="0"  width="100%" border="0" style="border:none;">
                             <tbody>
                             <tr>
                                 <td valign="top">750g有机全麦粉<br /> 750g黄金玉米粉<br /> 750g玉米糁</td>
-
                             </tr>
                             </tbody>
                         </table></td>
                     </tr>
                     <tr>
-                        <td width="111" height="100">　</td>
+                        <td width="111" height="100"><input type="button" value="立即购买" onclick=window.open("${ctx}/order/order/${product.getProductCode()}")>　</td>
                     </tr>
                     <tr>
                         <td align="middle" width="323" colspan="2"
@@ -159,7 +153,7 @@
             <h3>--详细介绍--</h3>
             <!--pro_detail_con start -->
             <div class="pro_detail_con">
-                <%=product.getDescribe()%>
+                ${product.getDescribe()}
             </div>
             <!--pro_detail_con end -->
         </div>

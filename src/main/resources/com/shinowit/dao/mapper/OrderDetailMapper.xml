@@ -13,6 +13,10 @@
     <result column="num" property="num" jdbcType="INTEGER" />
     <result column="price" property="price" jdbcType="DECIMAL" />
   </resultMap>
+    <resultMap id="withProductAndOrder" type="com.shinowit.entity.OrderDetail" extends="BaseResultMap">
+        <association property="Product" column="product_code" javaType="com.shinowit.entity.Product" select="com.shinowit.dao.mapper.ProductMapper.selectByPrimaryKey"/>
+        <association property="orderInfo" column="bill_code" javaType="com.shinowit.entity.OrderInfo" select="com.shinowit.dao.mapper.OrderInfoMapper.selectByPrimaryKey"/>
+    </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
       WARNING - @mbggenerated
