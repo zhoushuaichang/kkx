@@ -43,6 +43,11 @@ public class LoginController {
         }
         HttpSession session = request.getSession(true);
         session.setAttribute("current_user", webUserList.get(0));
+        if(session.getAttribute("current_uri")!=null){
+            String uri=(String)session.getAttribute("current_uri");
+            session.removeAttribute("current_uri");
+            return "redirect:"+uri;
+        }
         return "redirect:/base";
     }
 

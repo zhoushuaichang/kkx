@@ -10,20 +10,18 @@ import javax.servlet.http.HttpSession;
  * Created by Administrator on 2014/12/28.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/logout")
 public class LogoutController {
-
     @Resource
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session){
-        try {
-            if(session.getAttribute("current_user")!=null){
-                session.removeAttribute("current_user");
-            }
+        try{
+            session.invalidate();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            return "redirect:/base";
         }
-        return "redirect:/base";
     }
 
 }

@@ -15,14 +15,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         Object user=session.getAttribute("current_user");
-        if (user != null) {
-            return true;
+        if (user == null) {
+            String uri=request.getRequestURI();
+            if(uri.startsWith("/order")||uri.startsWith("/logout")){
+                session.setAttribute("current_uri",uri);
+                request.getRequestDispatcher("/login/login").forward(request, response);
+                return false;
+            }
         }
-        String uri=request.getRequestURI();
-        if(uri.endsWith("/base")||uri.startsWith("/product")){
-            return true;
-        }
-//        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
-        return false;
+
+        return true;
     }
 }

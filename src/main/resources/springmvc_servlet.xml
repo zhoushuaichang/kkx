@@ -50,11 +50,7 @@
     </mvc:interceptors>
 
     <mvc:interceptors>
-        <mvc:interceptor>
-            <!--匹配拦截的URL路径-->
-            <mvc:mapping path="/WEB-INF/views/**"/>
-            <bean class="com.shinowit.framework.interceptor.LoginInterceptor"/>
-        </mvc:interceptor>
+        <bean class="com.shinowit.framework.interceptor.LoginInterceptor"/>
     </mvc:interceptors>
 
     <!-- Declare the Resolver -->

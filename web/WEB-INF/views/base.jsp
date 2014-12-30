@@ -55,7 +55,7 @@
                         <span class="Lloginfg">&nbsp;</span><a href="${ctx}/reg/reg">注册</a>
                         <%} else {%>
                         <a><%=current_user.getUserName()%> </a>
-                        <span class="Lloginfg">&nbsp;</span><a href="${ctx}/logout">注销</a>
+                        <span class="Lloginfg">&nbsp;</span><a href="${ctx}/logout/logout">注销</a>
                         <%}%>
 
                     </div>
