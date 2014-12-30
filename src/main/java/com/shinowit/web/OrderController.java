@@ -62,7 +62,7 @@ public class OrderController {
         if(session.getAttribute("productList")!=null){
             session.removeAttribute("productList");
         }
-        return"";
+        return "redirect:/base";
     }
 
 }

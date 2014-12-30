@@ -4,10 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>无标题文档</title>
+    <title>修改密码1</title>
     <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/css/LoginAndReg.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/css/GetPwd.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function submitEmail(){
+            document.getElementById('emailForm').submit();
+        }
+    </script>
 </head>
 
 <body>
@@ -21,13 +26,11 @@
                 <div class="dlTitle">
                 </div>
                 <div class="dlContent">
-                    <form:form action="" method="post" id="emailForm">
+                    <form:form action="${ctx}/getPwd/sendEmail" method="post" id="emailForm">
                     <div class="dlContentC">
                         <p class="colSty1"> 请输入您在注册时使用的Email地址：</p>
-                        <p class="hideMsg2" id="emailErrMsg"></p>
                         <p class="pSty1B pSty2B"> 请填写您的Email地址：
                             <input name="email_address" id="email_address" maxlength="128" type="text" />
-                            <input name="hiddenUserIDAndEmail" id="hiddenUserIDAndEmail" type="hidden" />
                             <span id="emailErrMsg" ></span>
                         </p>
                         <!-- onchange="EmailGetPwd(false);"-->

@@ -16,16 +16,17 @@
         /**
          * 局部刷新页面
          */
-        $(document).ready(function(){
-            $('.sb').click(function(){
+
+        $(document).ready(function () {
+
+            $(".sb").click(function(){
                 $.ajax({
                     type: "get",
                     url: "<%=request.getContextPath()%>/product/productByType",
                     data: "typeCode=" + $(this).attr('data'),
                     contentType:"application/json",
                     success: function (data) {
-                        var refreshHtml='<div id="mid">' +
-                                '<h2>新品上市</h2>' +
+                        var refreshHtml= '<h2>新品上市</h2>' +
                                 '<div class="hotsale_ad"><img src="<%=request.getContextPath()%>/images/pic1.jpg" width="780" height="274"/>' +
                                 '</div>' +
                                 '<div class="hotsale" id="productContent">';
@@ -41,13 +42,13 @@
                                     '</dl>';
                         }
                         refreshHtml+='<br class="spacer"/>' +
-                                '</div>' +
                                 '</div>';
                         document.getElementById('mid').innerHTML=refreshHtml;
                     }
                 });
             });
         });
+
     </script>
 </head>
 <body>
@@ -63,12 +64,10 @@
         <!--left start -->
         <div id="left">
             <h2>商品分类</h2>
-            <ul>
-                <%
-                    List<ProductType> productTypeList = (List<ProductType>) request.getSession().getAttribute("product_type_list");
-                %>
-                <c:forEach items="<%=productTypeList%>" var="current_type">
-                    <li><a id="sb" class="sb" data="${current_type.typeCode}">${current_type.typeName}</a></li>
+            <ul id="productTypeList">
+
+                <c:forEach items="${productTypeList}" var="current_type">
+                    <li><a class="sb" data="${current_type.typeCode}">${current_type.typeName}</a></li>
                 </c:forEach>
             </ul>
             <h2 class="detail">纸皮巴旦木龙果</h2>
@@ -91,7 +90,7 @@
                 <li><a href="#">纸皮巴旦木龙果</a></li>
             </ul>
             <br class="spacer" />
-    <span style="color:#f9c441;">sssss<br />
+    <span style="color:#f9c441;"><br />
     <br />
     </span> </div>
         <!--left end -->
@@ -102,9 +101,6 @@
         <h6><img height="28" src="<%=request.getContextPath()%>/images/cp_1.jpg" width="584" border="0" /></h6>
         <!--pro_price start -->
         <div class="pro_price">
-            <%
-                Product product=(Product)request.getSession().getAttribute("product");
-            %>
             <dl>
                 <dt><img src="<%=request.getContextPath()%>/images/T1.jpg" width="310" height="310" /></dt>
                 <dd><table height="413" border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse; border:#ccc 1px solid;">

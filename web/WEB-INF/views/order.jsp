@@ -142,13 +142,13 @@
                         <TBODY>
                         <TR>
                             <TD class="tdSty03" vAlign=top align=left colSpan=2>
-                                <A href="#"><IMG src="<%=request.getContextPath()%>/images/pic_gwc__r10_c3.jpg" alt=继续购物 width=95 height=25 border="0"></A>
+                                <A href="${ctx}/base"><IMG src="<%=request.getContextPath()%>/images/pic_gwc__r10_c3.jpg" alt=继续购物 width=95 height=25 border="0"></A>
                                 <A href="${ctx}/order/clearAll">&nbsp;<IMG src="<%=request.getContextPath()%>/images/pic_gwc__r10_c8.jpg" alt=清空购物车 width=95 height=25 border="0" class="jl02"></A>
                             </TD>
                             <TD align=left>&nbsp;</TD>
                             <TD align=middle>&nbsp;</TD>
                             <TD class="tdSty04" vAlign=top align=right colSpan=3>
-                                <A href="<%=request.getContextPath()%>/WEB-INF/views/address.jsp"><IMG src="<%=request.getContextPath()%>/images/pic_gwc__r2_c10.jpg" alt=去结算 border="0"></A>
+                                <A href="${ctx}/"><IMG src="<%=request.getContextPath()%>/images/pic_gwc__r2_c10.jpg" alt=去结算 border="0"></A>
                             </TD>
                         </TR>
                         </TBODY>

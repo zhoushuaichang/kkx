@@ -58,7 +58,7 @@
 
                                 <div class="btnReg">
                                     <button type="button" onclick="checklogin();"></button>
-                                <span><a href="${ctx}/WEB-INF/views/GetPwd1.jsp" title=""
+                                <span><a href="${ctx}/getPwd/getPass1" title=""
                                          target="_new">密码忘记了？</a></span></div>
                                 <span class="blank20"></span>
                             </form:form>

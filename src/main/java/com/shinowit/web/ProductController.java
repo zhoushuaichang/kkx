@@ -1,7 +1,9 @@
 package com.shinowit.web;
 
 import com.shinowit.dao.mapper.ProductMapper;
+import com.shinowit.dao.mapper.ProductTypeMapper;
 import com.shinowit.entity.Product;
+import com.shinowit.entity.ProductType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,14 +25,8 @@ public class ProductController {
 
     @Resource
     private ProductMapper product_dao;
-
-    @RequestMapping(value = "/productAll")
-    public String showProduct(HttpSession session) {
-        session.removeAttribute("product_list");
-        List<Product> productList = product_dao.listAll();
-        session.setAttribute("productList", productList);
-        return "product_by_type";
-    }
+    @Resource
+    private ProductTypeMapper product_type_dao;
 
     @RequestMapping(value = "/productByType")
     @ResponseBody
@@ -43,7 +39,9 @@ public class ProductController {
     @RequestMapping(value = "/productByCode/{productCode}")
     public String showProductByCode(@PathVariable String productCode,Model model){
         Product product=product_dao.selectByPrimaryKey(productCode);
+        List<ProductType> productTypeList = product_type_dao.listAll();
         model.addAttribute("product",product);
+        model.addAttribute("productTypeList",productTypeList);
         return "inner-page";
     }
 
