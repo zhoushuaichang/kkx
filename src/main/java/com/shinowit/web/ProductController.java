@@ -3,6 +3,7 @@ package com.shinowit.web;
 import com.shinowit.dao.mapper.ProductMapper;
 import com.shinowit.dao.mapper.ProductTypeMapper;
 import com.shinowit.entity.Product;
+import com.shinowit.entity.ProductCriteria;
 import com.shinowit.entity.ProductType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +33,12 @@ public class ProductController {
     @ResponseBody
     public List<Product> showProductByType(@RequestParam(value = "typeCode") String typeCode, Model model, HttpSession session) {
         session.removeAttribute("product_list");
-        List<Product> productList = product_dao.selectByProductType(typeCode);
+        ProductCriteria ex=new ProductCriteria();
+        ProductCriteria.Criteria criteria=ex.createCriteria();
+        criteria.andTypeCodeEqualTo(typeCode);
+        ex.setPageIndex(1);
+        ex.setPageSize(1);
+        List<Product> productList = product_dao.selectPage(ex);
         return productList;
     }
 

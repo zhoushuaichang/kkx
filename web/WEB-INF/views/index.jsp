@@ -4,38 +4,51 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="base.jsp" %>
+<%
+    int pageIndex = (Integer) request.getSession().getAttribute("pageIndex");
+    int pageCount = (Integer) request.getSession().getAttribute("pageCount");
+%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>口口香-首页</title>
     <link href="${ctx}/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/css/page.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="${ctx}/js/jquery.js"></script>
     <script type="text/javascript">
         /**
          * 局部刷新页面
          */
-        $(document).ready(function(){
-            $('.sb').click(function(){
+        $(document).ready(function () {
+            $('.sb').click(function () {
                 $.ajax({
                     type: "get",
                     url: "${ctx}/product/productByType",
                     data: "typeCode=" + $(this).attr('data'),
-                    contentType:"application/json",
+                    contentType: "application/json",
                     success: function (data) {
-                        var refreshHtml='';
-                        for(var i=0;i<data.length;i++){
-                            refreshHtml+='<dl>'+
-                                    '<dt><a href="${ctx}/product/productByCode/'+data[i].productCode+'" target="_new">'+
-                                    '<img src="${ctx}/'+data[i].picPath+'" width="310" height="310" border="0"/></a>'+
-                                    '</dt>'+
-                                    '<dd>'+data[i].productName+'</dd>'+
-                                    '<dd><span class="viv1">￥:'+data[i].price+'</span><span class="viv2">'+
-                                    '<a href="${ctx}/product/productByCode/'+data[i].productCode+'" target="_new">' +
-                                    '<img src="${ctx}/images/vivioow_b2.jpg" width="80" height="24" border="0"/></a></span></dd>'+
+                        var refreshHtml = '';
+                        for (var i = 0; i < data.length; i++) {
+                            refreshHtml += '<dl>' +
+                                    '<dt><a href="${ctx}/product/productByCode/' + data[i].productCode + '" target="_new">' +
+                                    '<img src="${ctx}/' + data[i].picPath + '" width="310" height="310" border="0"/></a>' +
+                                    '</dt>' +
+                                    '<dd>' + data[i].productName + '</dd>' +
+                                    '<dd><span class="viv1">￥:' + data[i].price + '</span><span class="viv2">' +
+                                    '<a href="${ctx}/product/productByCode/' + data[i].productCode + '" target="_new">' +
+                                    '<img src="${ctx}/images/vivioow_b2.jpg" width="80" height="24" border="0"/></a></span></dd>' +
                                     '</dl>';
                         }
-                        document.getElementById('productContent').innerHTML=refreshHtml;
+                        var refreshPage =
+                                <%
+                                    for(int i=1;i<=pageCount;i++){
+                                out.print("'<a href=\""+request.getContextPath()+"/base?pageIndex="+i+"\">"+i+"</a>'+");
+                                }
+                                %>
+                                '';
+                        document.getElementById('productContent').innerHTML = refreshHtml;
+                        document.getElementById('tres').innerHTML=refreshPage;
 
                     }
                 });
@@ -123,12 +136,28 @@
                         <dd>${product.productName}</dd>
                         <dd><span class="viv1">￥:${product.price}</span><span class="viv2">
                             <a href="${ctx}/product/productByCode/${product.productCode}" target="_new">
-                            <img src="${ctx}/images/vivioow_b2.jpg" width="80" height="24" border="0"/></a></span></dd>
+                                <img src="${ctx}/images/vivioow_b2.jpg" width="80" height="24" border="0"/></a></span>
+                        </dd>
                     </dl>
                 </c:forEach>
 
                 <br class="spacer"/>
+
             </div>
+            <span>
+                    	<div class="tres">
+                            <span class="disabled"> <a class="current">1</a></span>
+                            <%
+                                for (int i = 1; i <= pageCount; i++) {
+                                    if(i==pageIndex){
+                                        out.print("<span ><a class=\"current\" style=\"COLOR:#f00\" href=\"" + request.getContextPath() + "/base?pageIndex=" + i + "\">" + i + "</a></span>");
+                                    }else{
+                                        out.print("<a href=\"" + request.getContextPath() + "/base?pageIndex=" + i + "\">" + i + "</a>");
+                                    }
+                                }
+                            %>
+                        </div>
+                </span>
             <!--hotsale end -->
         </div>
         <!--mid end -->

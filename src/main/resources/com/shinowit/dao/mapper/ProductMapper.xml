@@ -450,4 +450,7 @@ product_code not in (select top ${skipRecordCount} product_code from product
     <select id="selectByProductType" resultMap="BaseResultMap" parameterType="java.lang.String">
         select * from product where type_code=#{typeCode,jdbcType=VARCHAR}
     </select>
+    <select id="countAll" resultType="java.lang.Integer">
+        select count(*) from product
+    </select>
 </mapper>

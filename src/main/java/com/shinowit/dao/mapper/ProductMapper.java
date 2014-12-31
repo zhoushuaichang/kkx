@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface ProductMapper {
 
+    int countAll();
     List<Product> listAll();
     List<Product> selectByProductType(String typeCode);
     /**

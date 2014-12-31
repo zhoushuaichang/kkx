@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -27,16 +28,26 @@ public class BaseController {
     private ProductMapper product_dao;
 
     @RequestMapping(value = "/base")
-    public String showProductTypeList(Model model,@RequestParam(value = "pageIndex", required = false, defaultValue = "1")int pageIndex) {
+    public String showProductTypeList(Model model,@RequestParam(value = "pageIndex", required = false, defaultValue = "1")int pageIndex,HttpSession session) {
+
 
         ProductCriteria ex=new ProductCriteria();
-        ex.setPageSize(8);
+        ex.setPageSize(2);
         ex.setPageIndex(pageIndex);
 
         List<ProductType> productTypeList = product_type_dao.listAll();
         List<Product> productList = product_dao.selectPage(ex);
+        int productCount=product_dao.countAll();
+        int pageCount=0;
+        if((productCount%2)>0){
+            pageCount=productCount/2+1;
+        }else{
+            pageCount=productCount/2;
+        }
         model.addAttribute("product_type_list", productTypeList);
         model.addAttribute("product_list", productList);
+        session.setAttribute("pageIndex",pageIndex);
+        session.setAttribute("pageCount",pageCount);
         return "index";
     }
 
