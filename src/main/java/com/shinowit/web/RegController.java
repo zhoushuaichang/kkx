@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.sql.Date;
 
 /**
@@ -20,7 +19,8 @@ import java.sql.Date;
 public class RegController {
 
     @Resource
-    private WebUserMapper web_user_dao;
+    private
+    WebUserMapper web_user_dao;
     @Resource
     private HtmlMail htmlMail;
 
