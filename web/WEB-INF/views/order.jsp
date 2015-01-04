@@ -1,5 +1,6 @@
 <%@ page import="com.shinowit.entity.Product" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.shinowit.entity.Chart" %>
 <%@include file="base.jsp" %>
 <%--
   Created by IntelliJ IDEA.
@@ -11,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    List<Product> productList = (List<Product>) request.getSession().getAttribute("productList");
+    List<Chart> chartList = (List<Chart>) request.getSession().getAttribute("chartList");
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -96,24 +97,24 @@
                             <td align="center" height="32">小计</td>
                             <td align="center">操作</td>
                         </tr>
-                        <% for (Product product : productList) {%>
+                        <% for (Chart chart : chartList) {%>
                         <tr>
                             <td width="160" height="160" align="center" valign="middle"><span class="imgw"><a href="#"
                                                                                                               target="_blank"><img
                                     src="<%=request.getContextPath()%>/images/pro_04.jpg" border="0"
                                     width="160"/></a></span></td>
                             <td><a href="#" target="_blank"><span
-                                    class="STYLE5"><%=product.getProductName()%></span></a></td>
-                            <td align="center">￥<span id="productPrice"><%=product.getPrice()%></span></td>
+                                    class="STYLE5"><%=chart.getProduct().getProductName()%></span></a></td>
+                            <td align="center">￥<span id="productPrice"><%=chart.getPrice()%></span></td>
                             <td align="center"><input name="OrderAmount_2"
-                                                      id="OrderAmount_<%=product.getProductCode()%>" class="OrderCount"
+                                                      id="OrderAmount_<%=chart.getProductCode()%>" class="OrderCount"
                                                       style="width: 20px; height: 15px; color: rgb(75, 75, 75);"
                                                       value="1" type="text"
-                                                      onchange="orderCountChange('<%=product.getProductCode()%>',<%=product.getPrice()%>)"/>
+                                                      onchange="orderCountChange('<%=chart.getProductCode()%>',<%=chart.getPrice()%>)"/>
                             </td>
                             <td align="center">￥<span
-                                    id="productTotal_<%=product.getProductCode()%>"><%=product.getPrice()%></span></td>
-                            <td align="center"><a class="delProduct" data="<%=product.getProductCode()%>">删除</a></td>
+                                    id="productTotal_<%=chart.getProductCode()%>"><%=chart.getPrice()%></span></td>
+                            <td align="center"><a class="delProduct" data="<%=chart.getProductCode()%>">删除</a></td>
                         </tr>
                         <%} %>
 
