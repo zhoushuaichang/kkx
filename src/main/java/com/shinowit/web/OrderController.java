@@ -52,6 +52,7 @@ public class OrderController {
             chart.setProductCode(productCode);
             chart.setPrice(prod.getPrice());
             chart.setUserName(webUser.getUserName());
+            chart.setTotal(prod.getPrice());
             try {
                 chart_dao.insert(chart);
             } catch (Exception e) {
