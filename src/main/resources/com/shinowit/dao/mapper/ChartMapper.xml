@@ -353,7 +353,7 @@
   </select>
 
 
-    <select id="listAll" resultMap="BaseResultMap">
+    <select id="listAll" resultMap="withProduct">
         select * from chart
     </select>
 

@@ -10,7 +10,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>无标题文档</title>
+    <title>收货信息</title>
     <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/css/LoginAndReg.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/css/gmxx.css" rel="stylesheet" type="text/css"/>
@@ -58,7 +58,7 @@
             <tbody>
             <tr class="addbgcolor trSty01">
                 <td class="reusableColor5 xxSty01" align="left" height="30">
-                    &nbsp;&nbsp;&nbsp;&nbsp;<strong>地址簿 </strong>（您以前用过的地址）
+                    &nbsp;&nbsp;&nbsp;&nbsp;<strong>地址簿 </strong>（您的默认地址）
                 </td>
             </tr>
             <tr>
@@ -66,11 +66,9 @@
                     <div class="changeAdd" align="center">
                         <ul class="ulSty">
                             <li>收 货 人：刘德华<br/>
-                                地　　区：河北生唐山市火车站<br/>
                                 收货地址:河北生唐山市火车站<br/>
                                 邮政编码：063000<br/>
-                                固定电话：<br/>
-                                移动电话：138********<br/>
+                                联系电话：138********<br/>
                                 <span class="addDeleteSty addFontCol"><a href="#"><span class="addFontCol">修改</span></a><span
                                         class="addFontCol">　|</span>　<a href="#"><span class="addFontCol">删除</span></a></span><span
                                         class="addSpanSty"><a href="<%=request.getContextPath()%>/WEB-INF/views/address.jsp"><img
@@ -177,22 +175,16 @@
                                             </li>
                                             <li class="conLi4"><span id="errorPostal" class="errorstring"></span></li>
                                             <li>
-                                                <p class="pSty01" align="right">固定电话：</p>
+                                                <p class="pSty01" align="right">联系电话：</p>
 
-                                                <p class="pSty02">
-                                                    <input name="Tel" id="Tel" onchange="ChecktheForm_Tel()" size="12"
-                                                           type="text"/>
-                                                    <span id="PhoneCode"></span></p>
+                                                <p class="pSty02 reusableColor3" align="left">
+                                                    <input name="tel" id="tel" size="11"
+                                                           onchange="ChecktheForm_Name()" type="text"/>
+                                                    &nbsp;&nbsp;<span class="reusableColor4">*</span>&nbsp;&nbsp;
+                                                    请准确填写联系电话，以便确保商品及时送达。</p>
                                             </li>
                                             <li class="conLi5"><span id="errorPhone" class="errorstring"></span></li>
-                                            <li>
-                                                <p class="pSty01" align="right">手机：</p>
 
-                                                <p class="pSty02 reusableColor3">
-                                                    <input name="Mobile" id="Mobile" size="22"
-                                                           onchange="ChecktheForm_Tel()" type="text"/>
-                                                    手机与固定电话至少有一项必填 </p>
-                                            </li>
                                             <li class="conLi6"><span id="errorMobile"></span></li>
                                             <li class="conLi7"><span class="addSpanSty"><a
                                                     href="<%=request.getContextPath()%>/WEB-INF/views/address.jsp"><img

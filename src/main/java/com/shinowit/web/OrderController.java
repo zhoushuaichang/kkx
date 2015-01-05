@@ -92,4 +92,9 @@ public class OrderController {
         return "redirect:/base";
     }
 
+    @RequestMapping(value = "/jiesuan")
+    public String submitOrder(){
+        return "address";
+    }
+
 }

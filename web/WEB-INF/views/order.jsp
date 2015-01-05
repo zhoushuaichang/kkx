@@ -42,7 +42,7 @@
                         for (var i = 0; i < data.length; i++) {
                             refreshHtml += '<tr>' +
                                     '<td width="160" height="160" align="center" valign="middle"><span class="imgw"><a href="#" target="_blank"><img src="${ctx}/images/pro_04.jpg"  border="0" width="160" /></a></span></td>' +
-                                    '<td><a href="#" target="_blank"><span class="STYLE5">' + data[i].productName + '</span></a></td>' +
+                                    '<td><a href="#" target="_blank"><span class="STYLE5">' + data[i].product.productName + '</span></a></td>' +
                                     '<td align="center">￥<span id="productPrice">' + data[i].price + '</span></td>' +
                                     '<td align="center"><input name="OrderAmount_2" id="OrderAmount_' + data[i].productCode + '" class="OrderCount" style="width: 20px; height: 15px; color: rgb(75, 75, 75);" value="1" type="text" onchange="orderCountChange(' + data[i].productCode + ',' + data[i].price + ')" /></td>' +
                                     '<td align="center">￥<span id="productTotal_' + data[i].productCode + '">' + data[i].price + '</span></td>' +
@@ -149,7 +149,7 @@
                             <TD align=left>&nbsp;</TD>
                             <TD align=middle>&nbsp;</TD>
                             <TD class="tdSty04" vAlign=top align=right colSpan=3>
-                                <A href="${ctx}/"><IMG src="<%=request.getContextPath()%>/images/pic_gwc__r2_c10.jpg" alt=去结算 border="0"></A>
+                                <A href="${ctx}/order/jiesuan"><IMG src="<%=request.getContextPath()%>/images/pic_gwc__r2_c10.jpg" alt=去结算 border="0"></A>
                             </TD>
                         </TR>
                         </TBODY>
