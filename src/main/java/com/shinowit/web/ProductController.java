@@ -1,10 +1,5 @@
 package com.shinowit.web;
 
-import com.shinowit.dao.mapper.ProductMapper;
-import com.shinowit.dao.mapper.ProductTypeMapper;
-import com.shinowit.entity.Product;
-import com.shinowit.entity.ProductCriteria;
-import com.shinowit.entity.ProductType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;

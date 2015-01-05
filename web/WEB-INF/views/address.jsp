@@ -11,9 +11,23 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>收货信息</title>
-    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=request.getContextPath()%>/css/LoginAndReg.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=request.getContextPath()%>/css/gmxx.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/css/LoginAndReg.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/css/gmxx.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="${ctx}/js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                type:'get',
+                url:'',
+                data:'',
+                contentType: "application/json",
+                success:function(data){
+
+                }
+            })
+        })
+    </script>
 </head>
 
 <body>

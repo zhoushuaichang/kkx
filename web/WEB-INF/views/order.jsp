@@ -1,6 +1,7 @@
 <%@ page import="com.shinowit.entity.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.shinowit.entity.Chart" %>
+<%@ page import="java.math.BigDecimal" %>
 <%@include file="base.jsp" %>
 <%--
   Created by IntelliJ IDEA.
@@ -13,6 +14,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     List<Chart> chartList = (List<Chart>) request.getSession().getAttribute("chartList");
+    int numTotalCount=0;
+    float totalMoney=0;
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -59,7 +62,24 @@
             var orderCount = parseFloat(document.getElementById('OrderAmount_' + productCode).value);
             productPrice = parseFloat(productPrice);
             document.getElementById('productTotal_' + productCode).innerHTML = orderCount * productPrice;
-//            document.getElementById('spRealTotalAmount').innerHTML=orderCount*productPrice;
+            var orderCountList=document.getElementsByClassName('OrderCount');
+            var orderProductPrice=document.getElementsByClassName('ProductPrice');
+            var totalMoney=0;
+            for(var i=0;i<orderCountList.length;i++){
+                totalMoney+=orderCountList[i].value*orderProductPrice[i].innerHTML;
+            }
+            document.getElementById('spTotalAmount').innerHTML=totalMoney;
+
+            $.ajax({
+                type: "get",
+                url: "${ctx}/order/editChart",
+                data: "productCode=" + productCode+"&num="+orderCount+"&total="+totalMoney,
+                contentType: "application/json",
+                success: function (data) {
+
+                }
+            });
+
         }
         function delProduct(productCode) {
 
@@ -97,39 +117,42 @@
                             <td align="center" height="32">小计</td>
                             <td align="center">操作</td>
                         </tr>
-                        <% for (Chart chart : chartList) {%>
+                        <% numTotalCount=0;
+                            for (Chart chart : chartList) {%>
                         <tr>
-                            <td width="160" height="160" align="center" valign="middle"><span class="imgw"><a href="#"
+                            <td width="160" height="160" align="center" valign="middle"><span class="imgw"><a href="${ctx}/product/productByCode/<%=chart.getProductCode()%>"
                                                                                                               target="_blank"><img
                                     src="<%=request.getContextPath()%>/images/pro_04.jpg" border="0"
                                     width="160"/></a></span></td>
-                            <td><a href="#" target="_blank"><span
+                            <td><a href="${ctx}/product/productByCode/<%=chart.getProductCode()%>" target="_blank"><span
                                     class="STYLE5"><%=chart.getProduct().getProductName()%></span></a></td>
-                            <td align="center">￥<span id="productPrice"><%=chart.getPrice()%></span></td>
+                            <td align="center">￥<span id="productPrice" class="ProductPrice" data="<%=chart.getPrice()%>"><%=chart.getPrice()%></span></td>
                             <td align="center"><input name="OrderAmount_2"
                                                       id="OrderAmount_<%=chart.getProductCode()%>" class="OrderCount"
                                                       style="width: 20px; height: 15px; color: rgb(75, 75, 75);"
-                                                      value="1" type="text"
+                                                      value="<%=chart.getNum()%>" type="text"
                                                       onchange="orderCountChange('<%=chart.getProductCode()%>',<%=chart.getPrice()%>)"/>
                             </td>
                             <td align="center">￥<span
                                     id="productTotal_<%=chart.getProductCode()%>"><%=chart.getPrice()%></span></td>
                             <td align="center"><a class="delProduct" data="<%=chart.getProductCode()%>">删除</a></td>
                         </tr>
-                        <%} %>
+                        <% numTotalCount+=chart.getNum();
+                            totalMoney+=chart.getPrice().floatValue()*chart.getNum().floatValue();
+                            } %>
 
                     </table>
                     <TABLE width="80%" border=0 align="center" cellPadding=0 cellSpacing=0 class="dobuleBorder">
                         <TBODY>
                         <TR>
                             <TD class="tdStyProductTotal" vAlign=top align=right>
-                                产品数量总计：<SPAN class="colSty " id="spTotalCount">0</SPAN><SPAN
+                                产品数量总计：<SPAN class="colSty " id="spTotalCount"><%=numTotalCount%></SPAN><SPAN
                                     class="colSty sty008">件</SPAN>
                                 赠送积分总计：<SPAN class="colSty" id="giftPoint">0</SPAN><SPAN class="colSty sty008">分</SPAN>
                                 花费积分总计：<SPAN class="colSty " id="totalPoint">0</SPAN><SPAN
                                     class="colSty sty010">分</SPAN>
                                 <SPAN id="decspan">
-                                    产品金额总计：<SPAN class="colSty ">￥</SPAN><SPAN class="colSty sty008" id="spTotalAmount">0.00</SPAN><BR>
+                                    产品金额总计：<SPAN class="colSty ">￥</SPAN><SPAN class="colSty sty008" id="spTotalAmount"><%=totalMoney%></SPAN><BR>
                                     <SPAN class="fontSty01">实际金额：<SPAN
                                             class="colSty"><STRONG>￥</STRONG></SPAN><STRONG><SPAN class="colSty"
                                                                                                   id="spRealTotalAmount">0.00</SPAN></STRONG>

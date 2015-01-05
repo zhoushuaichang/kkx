@@ -1,11 +1,6 @@
 package com.shinowit.web;
 
-import com.shinowit.dao.mapper.ChartMapper;
-import com.shinowit.dao.mapper.ProductMapper;
-import com.shinowit.entity.Chart;
-import com.shinowit.entity.ChartCriteria;
-import com.shinowit.entity.Product;
-import com.shinowit.entity.WebUser;
+import com.shinowit.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +20,8 @@ public class OrderController {
     private ProductMapper product_dao;
     @Resource
     private ChartMapper chart_dao;
+    @Resource
+    private OrderService order_service;
 
      @RequestMapping(value = "/order/{productCode}")
     public String makeOrder(@PathVariable(value = "productCode") String productCode, HttpSession session) {
@@ -92,8 +89,23 @@ public class OrderController {
         return "redirect:/base";
     }
 
+    @RequestMapping(value = "editChart")
+    public void editChart (Chart chart,HttpSession session){
+        WebUser webUser= (WebUser) session.getAttribute("current_user");
+        ChartCriteria chartEx=new ChartCriteria();
+        ChartCriteria.Criteria criteria=chartEx.createCriteria();
+        criteria.andUserNameEqualTo(webUser.getUserName());
+        criteria.andProductCodeEqualTo(chart.getProductCode());
+
+        chart_dao.updateByExampleSelective(chart,chartEx);
+        System.out.print("1111111111111111111111111111111111");
+    }
+
     @RequestMapping(value = "/jiesuan")
     public String submitOrder(){
+//        OrderInfo orderInfo=new OrderInfo();
+//        OrderDetail orderDetail=new OrderDetail();
+//        order_service.createOrder(orderInfo,orderDetail);
         return "address";
     }
 
