@@ -1,9 +1,6 @@
 package com.shinowit.web;
 
-import com.shinowit.dao.mapper.ChartMapper;
-import com.shinowit.dao.mapper.CityMapper;
-import com.shinowit.dao.mapper.ProductMapper;
-import com.shinowit.dao.mapper.ProvinceMapper;
+import com.shinowit.dao.mapper.*;
 import com.shinowit.entity.*;
 import com.shinowit.service.OrderService;
 import org.springframework.stereotype.Controller;
@@ -32,6 +29,8 @@ public class OrderController {
     private CityMapper city_dao;
     @Resource
     private ProvinceMapper province_dao;
+    @Resource
+    private MemberAddressMapper member_address_dao;
 
      @RequestMapping(value = "/order/{productCode}")
     public String makeOrder(@PathVariable(value = "productCode") String productCode, HttpSession session) {
@@ -108,19 +107,20 @@ public class OrderController {
         criteria.andProductCodeEqualTo(chart.getProductCode());
 
         chart_dao.updateByExampleSelective(chart,chartEx);
-        System.out.print("1111111111111111111111111111111111");
     }
 
     @RequestMapping(value = "/jiesuan")
-    public String submitOrder(@ModelAttribute("province")Province province1,Model model,String provinceId){
+    public String submitOrder(Model model,HttpSession session){
 //        OrderInfo orderInfo=new OrderInfo();
 //        OrderDetail orderDetail=new OrderDetail();
 //        order_service.createOrder(orderInfo,orderDetail);
-        List<Province> provinceList=province_dao.listAll();
-        model.addAttribute("provincelist",provinceList);
-
-        List<City> cityList=city_dao.queryCityByProvinceId(provinceId);
-        model.addAttribute("cityList",cityList);
+        WebUser webUser= (WebUser) session.getAttribute("current_user");
+        MemberAddressCriteria memberAddressEx=new MemberAddressCriteria();
+        MemberAddressCriteria.Criteria criteria=memberAddressEx.createCriteria();
+        criteria.andDefaultAddrEqualTo(true);
+        criteria.andUserNameEqualTo(webUser.getUserName());
+        List<MemberAddress> memberAddressList=member_address_dao.selectByExample(memberAddressEx);
+        model.addAttribute("default_address",memberAddressList.get(0));
         return "address";
     }
 

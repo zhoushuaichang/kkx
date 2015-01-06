@@ -120,10 +120,10 @@
                 <td align="left" valign="top" height="145">
                     <div class="changeAdd" align="center">
                         <ul class="ulSty">
-                            <li>收 货 人：刘德华<br/>
-                                收货地址:河北生唐山市火车站<br/>
-                                邮政编码：063000<br/>
-                                联系电话：138********<br/>
+                            <li>收 货 人：${default_address.recvMan}<br/>
+                                收货地址:${default_address.recvAddress}<br/>
+                                邮政编码：${default_address.postCode}<br/>
+                                联系电话：${default_address.tel}<br/>
                                 <span class="addDeleteSty addFontCol"><a href="#"><span class="addFontCol">修改</span></a><span
                                         class="addFontCol">　|</span>　<a href="#"><span class="addFontCol">删除</span></a></span><span
                                         class="addSpanSty"><a
@@ -150,12 +150,12 @@
                                                     <p class="pSty01" align="right">收货人姓名：</p>
 
                                                     <p class="pSty02 reusableColor3" align="left">
-                                                        <input name="recvName" id="recvName" size="20"
-                                                               onblur="return checktheRecvName()" type="text"/>
+                                                        <input name="recvMan" id="recvMan" size="20"
+                                                               onblur="return checktheRecvMan()" type="text"/>
                                                         &nbsp;&nbsp;<span class="reusableColor4">*</span>&nbsp;&nbsp;
                                                         请准确填写真实姓名，以便确保商品准确无误送达。</p>
                                                 </li>
-                                                <li class="conLi1"><span class="errorstring" id="errorRecvName"></span></li>
+                                                <li class="conLi1"><span class="errorstring" id="errorRecvMan"></span></li>
                                                 <li>
                                                     <p class="pSty01" align="right">省份/直辖市：</p>
 
