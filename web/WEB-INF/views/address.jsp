@@ -182,7 +182,7 @@
 
                                                     <p class="pSty02">
                                                         <input name="Address" id="Address" size="40"
-                                                               onchange="checktheDetailAddress()" maxlength="500"
+                                                               onblur="checktheDetailAddress()" maxlength="500"
                                                                type="text"/>
                                                         &nbsp;&nbsp;<span class="reusableColor4">*</span>&nbsp;&nbsp;
                                                         <br/>
@@ -197,7 +197,7 @@
 
                                                     <p class="pSty02 reusableColor3">
                                                         <input name="Zip" id="Zip" size="7"
-                                                               onchange="ChecktheForm_Zip()"
+                                                               onblur="ChecktheZip()"
                                                                type="text"/>
                                                         &nbsp;&nbsp;<span
                                                             class="reusableColor4">*</span>&nbsp;&nbsp; <span
@@ -210,7 +210,7 @@
 
                                                     <p class="pSty02 reusableColor3" align="left">
                                                         <input name="linkTel" id="linkTel" size="11"
-                                                               onchange="ChecktheLinkTel()" type="text"/>
+                                                               onblur="ChecktheinkTel()" type="text"/>
                                                         &nbsp;&nbsp;<span class="reusableColor4">*</span>&nbsp;&nbsp;
                                                         请准确填写联系电话，以便确保商品及时送达。</p>
                                                 </li>
