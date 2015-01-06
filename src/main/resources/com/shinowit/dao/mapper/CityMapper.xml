@@ -246,4 +246,10 @@
 <include refid="select_by_page_outter_orderby_sql"/> 
  )
   </select>
+
+
+    <select id="queryCityByProvinceId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from city where provinceId=#{provinceid,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

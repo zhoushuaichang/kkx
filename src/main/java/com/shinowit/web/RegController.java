@@ -1,5 +1,7 @@
 package com.shinowit.web;
 
+import com.shinowit.dao.mapper.WebUserMapper;
+import com.shinowit.entity.WebUser;
 import com.shinowit.tools.HtmlMail;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

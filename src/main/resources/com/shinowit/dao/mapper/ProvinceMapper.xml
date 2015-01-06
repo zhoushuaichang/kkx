@@ -235,4 +235,9 @@
 <include refid="select_by_page_outter_orderby_sql"/> 
  )
   </select>
+
+    <select id="listAll" resultMap="BaseResultMap">
+        select * from province
+    </select>
+
 </mapper>

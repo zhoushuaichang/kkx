@@ -1,5 +1,8 @@
 package com.shinowit.web;
 
+import com.shinowit.dao.mapper.WebUserMapper;
+import com.shinowit.entity.WebUser;
+import com.shinowit.entity.WebUserCriteria;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

@@ -246,4 +246,10 @@
 <include refid="select_by_page_outter_orderby_sql"/> 
  )
   </select>
+
+
+    <select id="queryDistrictByCityId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from district where cityId=#{cityId,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

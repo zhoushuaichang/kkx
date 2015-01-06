@@ -1,7 +1,13 @@
 package com.shinowit.web;
 
+import com.shinowit.dao.mapper.ChartMapper;
+import com.shinowit.dao.mapper.CityMapper;
+import com.shinowit.dao.mapper.ProductMapper;
+import com.shinowit.dao.mapper.ProvinceMapper;
+import com.shinowit.entity.*;
 import com.shinowit.service.OrderService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,6 +28,10 @@ public class OrderController {
     private ChartMapper chart_dao;
     @Resource
     private OrderService order_service;
+    @Resource
+    private CityMapper city_dao;
+    @Resource
+    private ProvinceMapper province_dao;
 
      @RequestMapping(value = "/order/{productCode}")
     public String makeOrder(@PathVariable(value = "productCode") String productCode, HttpSession session) {
@@ -102,10 +112,15 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/jiesuan")
-    public String submitOrder(){
+    public String submitOrder(@ModelAttribute("province")Province province1,Model model,String provinceId){
 //        OrderInfo orderInfo=new OrderInfo();
 //        OrderDetail orderDetail=new OrderDetail();
 //        order_service.createOrder(orderInfo,orderDetail);
+        List<Province> provinceList=province_dao.listAll();
+        model.addAttribute("provincelist",provinceList);
+
+        List<City> cityList=city_dao.queryCityByProvinceId(provinceId);
+        model.addAttribute("cityList",cityList);
         return "address";
     }
 

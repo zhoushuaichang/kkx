@@ -1,5 +1,8 @@
 package com.shinowit.service;
 
+import com.shinowit.dao.mapper.OrderInfoMapper;
+import com.shinowit.entity.OrderDetail;
+import com.shinowit.entity.OrderInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
