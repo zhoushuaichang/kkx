@@ -127,10 +127,10 @@
                                 <span class="addDeleteSty addFontCol"><a href="#"><span class="addFontCol">修改</span></a><span
                                         class="addFontCol">　|</span>　<a href="#"><span class="addFontCol">删除</span></a></span><span
                                         class="addSpanSty"><a
-                                        href="<%=request.getContextPath()%>/WEB-INF/views/address.jsp"><img
+                                        href="<%=request.getContextPath()%>/order/submitDefault"><img
                                         src="<%=request.getContextPath()%>/images/button_pszADd.gif" border="0"
                                         onclick="#"/></a></span></li>
-                            <li class="liSty"></li>
+                            <li class="liSty" id="editdefault"></li>
                         </ul>
                         <div style="height:25px!important;color:#fff;">dddddddddddd</div>
                     </div>
@@ -219,7 +219,7 @@
 
                                                 <li class="conLi6"><span id="errorMobile"></span></li>
                                                 <li class="conLi7"><span class="addSpanSty"><a
-                                                        href="<%=request.getContextPath()%>/WEB-INF/views/address.jsp"><img
+                                                        href="<%=request.getContextPath()%>/order/submitAddress"><img
                                                         src="<%=request.getContextPath()%>/images/button_pszADd.gif"
                                                         alt=""
                                                         border="0" onclick="#"/></a></span></li>

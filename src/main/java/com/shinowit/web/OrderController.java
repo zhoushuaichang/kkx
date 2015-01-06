@@ -124,4 +124,25 @@ public class OrderController {
         return "address";
     }
 
+    @RequestMapping(value = "/submitAddress")
+    public String submitAddress(MemberAddress memberAddress,Model model){
+        model.addAttribute("memberAddress",memberAddress);
+        return "delivery";
+    }
+
+    @RequestMapping(value = "/submitDefault")
+    public String submitDefault(HttpSession session,Model model){
+        WebUser webUser= (WebUser) session.getAttribute("current_user");
+        MemberAddressCriteria memberAddressEx=new MemberAddressCriteria();
+        MemberAddressCriteria.Criteria criteria=memberAddressEx.createCriteria();
+        criteria.andDefaultAddrEqualTo(true);
+        criteria.andUserNameEqualTo(webUser.getUserName());
+        List<MemberAddress> memberAddressList=member_address_dao.selectByExample(memberAddressEx);
+        model.addAttribute("memberAddress",memberAddressList.get(0));
+
+        return "delivery";
+    }
+
+
+
 }
