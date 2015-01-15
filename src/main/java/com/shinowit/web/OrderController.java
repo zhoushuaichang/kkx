@@ -6,7 +6,6 @@ import com.shinowit.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -32,10 +31,10 @@ public class OrderController {
     @Resource
     private MemberAddressMapper member_address_dao;
 
-     @RequestMapping(value = "/order/{productCode}")
+    @RequestMapping(value = "/order/{productCode}")
     public String makeOrder(@PathVariable(value = "productCode") String productCode, HttpSession session) {
 
-         WebUser webUser= (WebUser) session.getAttribute("current_user");
+        WebUser webUser = (WebUser) session.getAttribute("current_user");
         ChartCriteria chartEx = new ChartCriteria();
         ChartCriteria.Criteria criteria = chartEx.createCriteria();
         criteria.andUserNameEqualTo(webUser.getUserName());
@@ -74,7 +73,7 @@ public class OrderController {
     @RequestMapping(value = "/delProduct")
     @ResponseBody
     public List<Chart> deleteProduce(@RequestParam(value = "productCode") String productCode, HttpSession session) {
-        WebUser webUser= (WebUser) session.getAttribute("current_user");
+        WebUser webUser = (WebUser) session.getAttribute("current_user");
         ChartCriteria chartEx = new ChartCriteria();
         ChartCriteria.Criteria criteria = chartEx.createCriteria();
         criteria.andProductCodeEqualTo(productCode);
@@ -86,7 +85,7 @@ public class OrderController {
 
     @RequestMapping(value = "clearAll")
     public String clearAll(HttpSession session) {
-        WebUser webUser= (WebUser) session.getAttribute("current_user");
+        WebUser webUser = (WebUser) session.getAttribute("current_user");
         ChartCriteria chartEx = new ChartCriteria();
         ChartCriteria.Criteria criteria = chartEx.createCriteria();
         criteria.andUserNameEqualTo(webUser.getUserName());
@@ -99,50 +98,62 @@ public class OrderController {
     }
 
     @RequestMapping(value = "editChart")
-    public void editChart (Chart chart,HttpSession session){
-        WebUser webUser= (WebUser) session.getAttribute("current_user");
-        ChartCriteria chartEx=new ChartCriteria();
-        ChartCriteria.Criteria criteria=chartEx.createCriteria();
+    public void editChart(Chart chart, HttpSession session) {
+        WebUser webUser = (WebUser) session.getAttribute("current_user");
+        ChartCriteria chartEx = new ChartCriteria();
+        ChartCriteria.Criteria criteria = chartEx.createCriteria();
         criteria.andUserNameEqualTo(webUser.getUserName());
         criteria.andProductCodeEqualTo(chart.getProductCode());
 
-        chart_dao.updateByExampleSelective(chart,chartEx);
+        chart_dao.updateByExampleSelective(chart, chartEx);
     }
 
     @RequestMapping(value = "/jiesuan")
-    public String submitOrder(Model model,HttpSession session){
+    public String submitOrder(Model model, HttpSession session) {
 //        OrderInfo orderInfo=new OrderInfo();
 //        OrderDetail orderDetail=new OrderDetail();
 //        order_service.createOrder(orderInfo,orderDetail);
-        WebUser webUser= (WebUser) session.getAttribute("current_user");
-        MemberAddressCriteria memberAddressEx=new MemberAddressCriteria();
-        MemberAddressCriteria.Criteria criteria=memberAddressEx.createCriteria();
+        WebUser webUser = (WebUser) session.getAttribute("current_user");
+        MemberAddressCriteria memberAddressEx = new MemberAddressCriteria();
+        MemberAddressCriteria.Criteria criteria = memberAddressEx.createCriteria();
         criteria.andDefaultAddrEqualTo(true);
         criteria.andUserNameEqualTo(webUser.getUserName());
-        List<MemberAddress> memberAddressList=member_address_dao.selectByExample(memberAddressEx);
-        model.addAttribute("default_address",memberAddressList.get(0));
+        List<MemberAddress> memberAddressList = member_address_dao.selectByExample(memberAddressEx);
+        model.addAttribute("default_address", memberAddressList.get(0));
         return "address";
     }
 
+
     @RequestMapping(value = "/submitAddress")
-    public String submitAddress(MemberAddress memberAddress,Model model){
-        model.addAttribute("memberAddress",memberAddress);
+    public String submitAddress(HttpSession session,MemberAddress memberAddress, Model model) {
+        WebUser webUser = (WebUser) session.getAttribute("current_user");
+        memberAddress.setUserName(webUser.getUserName());
+        member_address_dao.insert(memberAddress);
+        model.addAttribute("memberAddress", memberAddress);
         return "delivery";
     }
 
     @RequestMapping(value = "/submitDefault")
-    public String submitDefault(HttpSession session,Model model){
-        WebUser webUser= (WebUser) session.getAttribute("current_user");
-        MemberAddressCriteria memberAddressEx=new MemberAddressCriteria();
-        MemberAddressCriteria.Criteria criteria=memberAddressEx.createCriteria();
+    public String submitDefault(HttpSession session, Model model) {
+        WebUser webUser = (WebUser) session.getAttribute("current_user");
+        MemberAddressCriteria memberAddressEx = new MemberAddressCriteria();
+        MemberAddressCriteria.Criteria criteria = memberAddressEx.createCriteria();
         criteria.andDefaultAddrEqualTo(true);
         criteria.andUserNameEqualTo(webUser.getUserName());
-        List<MemberAddress> memberAddressList=member_address_dao.selectByExample(memberAddressEx);
-        model.addAttribute("memberAddress",memberAddressList.get(0));
+        List<MemberAddress> memberAddressList = member_address_dao.selectByExample(memberAddressEx);
+        model.addAttribute("memberAddress", memberAddressList.get(0));
 
         return "delivery";
     }
 
-
+    @RequestMapping(value = "/delivery/{addressId}")
+    public String delivery(@PathVariable int addressId,HttpSession session) {
+        boolean result=order_service.createOrder(addressId,session);
+        if(result){
+            return "endSubmit";
+        }else{
+            return "redirect:/base";
+        }
+    }
 
 }

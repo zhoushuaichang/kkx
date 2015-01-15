@@ -41,3 +41,7 @@ function ChecktheinkTel(){
         document.getElementById('errorPhone').innerHTML = '请输入联系电话';
     }
 }
+
+function submitForm(){
+    document.getElementById('newAddressForm').submit();
+}

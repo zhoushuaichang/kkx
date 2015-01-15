@@ -77,7 +77,8 @@
         </table>
 
         <table tableName="order_info">
-
+            <generatedKey column="id" sqlStatement="SqlServer"
+                          identity="true"/>
         </table>
 
         <table tableName="out_stock">

@@ -45,7 +45,7 @@
                         <td height="100" align="center" ><h3><span style="color:#f90;">您好，您的订单已提交，我们会在第二个工作日进行审核请耐心等待！</span></h3></td>
                     </tr>
                     <tr>
-                        <td height="50" class="typeTd2"><a href="#"><img src="<%=request.getContextPath()%>/images/button_close.gif" border="0" onclick="#" /></a><br />
+                        <td height="50" class="typeTd2"><a href="#"><img src="<%=request.getContextPath()%>/images/button_close.gif" border="0" onclick="javascript:window.close()" /></a><br />
                         </td>
                 </table>
 <SPAN

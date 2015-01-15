@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/logout")
 public class LogoutController {
-    @Resource
+
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session){
         try{

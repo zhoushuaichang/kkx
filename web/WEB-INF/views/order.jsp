@@ -73,10 +73,9 @@
             $.ajax({
                 type: "get",
                 url: "${ctx}/order/editChart",
-                data: "productCode=" + productCode+"&num="+orderCount+"&total="+totalMoney,
+                data: "productCode=" + productCode+"&num="+orderCount+"&total="+orderCount*productPrice,
                 contentType: "application/json",
                 success: function (data) {
-
                 }
             });
 
@@ -129,12 +128,12 @@
                             <td align="center">￥<span id="productPrice" class="ProductPrice" data="<%=chart.getPrice()%>"><%=chart.getPrice()%></span></td>
                             <td align="center"><input name="OrderAmount_2"
                                                       id="OrderAmount_<%=chart.getProductCode()%>" class="OrderCount"
-                                                      style="width: 20px; height: 15px; color: rgb(75, 75, 75);"
+                                                      style="width: 20px; 4 color: rgb(75, 75, 75);"
                                                       value="<%=chart.getNum()%>" type="text"
                                                       onchange="orderCountChange('<%=chart.getProductCode()%>',<%=chart.getPrice()%>)"/>
                             </td>
                             <td align="center">￥<span
-                                    id="productTotal_<%=chart.getProductCode()%>"><%=chart.getPrice()%></span></td>
+                                    id="productTotal_<%=chart.getProductCode()%>"><%=chart.getTotal()%></span></td>
                             <td align="center"><a class="delProduct" data="<%=chart.getProductCode()%>">删除</a></td>
                         </tr>
                         <% numTotalCount+=chart.getNum();

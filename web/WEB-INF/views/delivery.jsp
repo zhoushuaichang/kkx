@@ -68,7 +68,7 @@
                         </td>
                     </tr>
                     </tbody>
-                    <form method="post" name="Myform" id="Myform">
+                    <form method="post" name="Myform" id="Myform" >
                     </form>
                     <tr class="trSty01" bgcolor="#7a7f89">
                         <td class="reusableColor5 xxSty01 typeBottom" align="left" valign="middle">&nbsp;&nbsp;&nbsp;&nbsp;请选择
@@ -96,7 +96,7 @@
                             <span class="addDeleteSty addFontCol"> <a href="#"><span class="addFontCol">修改</span></a>
                             <span class="addFontCol">　|</span>　<a href="#"><span class="addFontCol">删除</span></a></span>
                             --%>
-                            <span class="addSpanSty"><a href="<%=request.getContextPath()%>/order/">
+                            <span class="addSpanSty"><a href="<%=request.getContextPath()%>/order/delivery/${memberAddress.id}">
                                 <img src="<%=request.getContextPath()%>/images/button_qr.gif" border="0" onclick="#"/></a></span><br/>
                         </td>
                     </tr>

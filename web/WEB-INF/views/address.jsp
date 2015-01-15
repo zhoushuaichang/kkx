@@ -143,7 +143,7 @@
                                         <strong>配送地址</strong></td>
                                 </tr>
                                 <tr>
-                                    <form action="${ctx}/" method="post">
+                                    <form action="${ctx}/order/submitAddress" method="post" id="newAddressForm">
                                         <td align="center" valign="top">
                                             <ul class="psAdd" align="left">
                                                 <li>
@@ -181,7 +181,7 @@
                                                     <p class="pSty01" align="right">详细地址：</p>
 
                                                     <p class="pSty02">
-                                                        <input name="Address" id="Address" size="40"
+                                                        <input name="recvAddress" id="Address" size="40"
                                                                onblur="checktheDetailAddress()" maxlength="500"
                                                                type="text"/>
                                                         &nbsp;&nbsp;<span class="reusableColor4">*</span>&nbsp;&nbsp;
@@ -196,7 +196,7 @@
                                                     <p class="pSty01" align="right">邮政编码：</p>
 
                                                     <p class="pSty02 reusableColor3">
-                                                        <input name="Zip" id="Zip" size="7"
+                                                        <input name="postCode" id="Zip" size="7"
                                                                onblur="ChecktheZip()"
                                                                type="text"/>
                                                         &nbsp;&nbsp;<span
@@ -209,7 +209,7 @@
                                                     <p class="pSty01" align="right">联系电话：</p>
 
                                                     <p class="pSty02 reusableColor3" align="left">
-                                                        <input name="linkTel" id="linkTel" size="11"
+                                                        <input name="tel" id="linkTel" size="11"
                                                                onblur="ChecktheinkTel()" type="text"/>
                                                         &nbsp;&nbsp;<span class="reusableColor4">*</span>&nbsp;&nbsp;
                                                         请准确填写联系电话，以便确保商品及时送达。</p>
@@ -218,11 +218,8 @@
                                                 </li>
 
                                                 <li class="conLi6"><span id="errorMobile"></span></li>
-                                                <li class="conLi7"><span class="addSpanSty"><a
-                                                        href="<%=request.getContextPath()%>/order/submitAddress"><img
-                                                        src="<%=request.getContextPath()%>/images/button_pszADd.gif"
-                                                        alt=""
-                                                        border="0" onclick="#"/></a></span></li>
+                                                <li class="conLi7"><span class="addSpanSty"><a>
+                                                    <img src="<%=request.getContextPath()%>/images/button_pszADd.gif" alt=""  border="0" onclick="submitForm()" /></a></span></li>
                                             </ul>
                                         </td>
                                     </form>
